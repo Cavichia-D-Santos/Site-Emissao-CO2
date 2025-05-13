@@ -1,18 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ODS 15 - Vida Terrestre</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-    <nav>
-        <a href="#index">Home</a>
-        <a href="data.html">Dados</a>
-        <a href="#sobre">Sobre</a>
-    </nav>
 
-    <h1>Página principal</h1>
-    <p>texto</p>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="#"><i class="bi bi-globe2 me-2"></i>ODS 15</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Página Inicial</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="data.html">Dados</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sobre.html">Sobre</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header-home text-center bg-light py-5">
+    <div class="container">
+      <h1 class="display-5 fw-bold">ODS 15: Nossas Escolhas e o Futuro do Planeta</h1>
+      <p class="lead">Transporte e alimentação: como essas ações impactam diretamente a emissão de carbono.</p>
+    </div>
+  </header>
+
+  <section class="container my-5">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2 class="mb-4">Por que isso importa?</h2>
+        <p class="fs-5">A ODS 15 busca proteger ecossistemas terrestres e a biodiversidade. Para além do desmatamento, o modo como nos locomovemos e nos alimentamos tem grande impacto ambiental.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container mb-5">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card h-100 border-success">
+          <div class="card-body">
+            <h5 class="card-title text-success"><i class="bi bi-bus-front me-2"></i>Transporte</h5>
+            <p class="card-text">Veículos movidos a combustíveis fósseis são responsáveis por grande parte das emissões de CO₂. Escolhas como caminhar, usar bicicleta ou transporte público ajudam a reduzir esses impactos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card h-100 border-success">
+          <div class="card-body">
+            <h5 class="card-title text-success"><i class="bi bi-nut-fill me-2"></i>Consumo de Carne Vermelha</h5>
+            <p class="card-text">A produção de carne vermelha gera altos níveis de metano, um potente gás de efeito estufa. Reduzir o consumo de carne e adotar dietas mais sustentáveis é uma forma prática de ajudar o planeta.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="text-align: center; padding: 40px 20px;">
+  <p style="font-size: 1.1rem; max-width: 700px; margin: 0 auto;">
+    Para mais informações, acesse o site oficial da ONU sobre o ODS 15:<br>
+    <a href="https://brasil.un.org/pt-br/sdgs/15?afd_azwaf_tok=eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJicmFzaWwudW4ub3JnIiwiZXhwIjoxNzQ3MTY4NzU3LCJpYXQiOjE3NDcxNjg3NDcsImlzcyI6InRpZXIxLWI4OTQ2ZGY0Ni02ZmhtZyIsInN1YiI6IjE4Ny40NS41NS45MCIsImRhdGEiOnsidHlwZSI6Imlzc3VlZCIsInJlZiI6IjIwMjUwNTEzVDIwMzkwN1otcjFiODk0NmRmNDY2ZmhtZ2hDMUdSVXFnZWcwMDAwMDAwZjkwMDAwMDAwMDByOWRwIiwiYiI6ImRqcW9ZZDM2X3ltSG11bkhFTnNpY1FTN3FweW1qVzl6a081T25oOGxkUmciLCJoIjoiTEFCQ19EMkpKWTRGbVlsUVlrNHpnemozT2tSN0g0SVZpOVlzdVd6aDVENCJ9fQ.WZw0T03BdE3SAXQuZ1RlFkm2CAuo8HtDJ7US_2PPdLVL6Dn3yNV8SGngmv8OIPT8jArwpiLx69Zxdhrl0C9U9YK9aep9sMHEyGQp8Vsko0ImFPLYEUrIOaDK9oS0rOCj4ifjqNrQqUsIOU3mvdQloBRFCCv6jZ-JZQ0P78n9jMz19w_3uMDQfdMzFmlFoJngirdahi0S3rTiJleuHk2cQ2IaS3kZolE734vmyqkrR0E17OgVSnmGwZ1eZhNxoRqamuN9Arq7BQDZppLnD_8IUYTqUV-2SQ7gnWzxs3GNHjQmpG_drRF4sbNFps1IySReLoxuIUSxazfvThh_xWHmIw.WF3obl2IDtqgvMFRqVdYkD5s" 
+       target="_blank" 
+       rel="noopener noreferrer">
+      https://brasil.un.org/pt-br/sdgs/15
+    </a>
+  </p>
+</section>
+
+
+  <section class="bg-success text-white text-center py-5">
+    <div class="container">
+      <h3><i class="bi bi-lightning-charge-fill me-2"></i>Você sabia?</h3>
+      <p class="fs-5 mt-3">Substituir o carro por transporte público duas vezes por semana pode reduzir sua emissão anual de carbono em até 20%.</p>
+    </div>
+  </section>
+
+  <footer class="text-center text-white py-3" style="background-color: #1b4332;">
+    <p class="mb-0">&copy; 2025 Data Gaymers - Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
