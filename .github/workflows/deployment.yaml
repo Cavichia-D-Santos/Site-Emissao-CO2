@@ -27,14 +27,14 @@ jobs:
                 context: .
                 file: ./Dockerfile
                 push: true
-                tags: thiagocavichia/deploy-site-co2:latest
+                tags: 2404053/deploy-site-co2:latest
             
             - name: Azure Deploy
               uses: Azure/webapps-deploy@v3.0.1
               with: 
                 app-name: pesquisa-emissao-co2
                 publish-profile: ${{ secrets.PUBLISH_PROFILE }}
-                image: thiagocavichia/deploy-site-co2:latest
+                image: 2404053/deploy-site-co2:latest
     
     # integration-test:
     #     name: test-e2e
