@@ -25,6 +25,12 @@ header {
   background-position: center;
 }
 
+.header-contato {
+  background-image: url('imagem-contato.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
 header h1 {
   font-size: 2.8rem;
   font-weight: bold;
