@@ -48,6 +48,12 @@ section h2 {
   margin-bottom: 20px;
 }
 
+section h3 {
+  color: #2d6a4f;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
 .bg-success h3 {
   font-size: 1.8rem;
   font-weight: bold;
