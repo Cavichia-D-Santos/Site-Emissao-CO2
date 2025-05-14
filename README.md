@@ -18,18 +18,26 @@
 
 <br>
 <h2 id="run">Descrição do projeto</h2>
-<p>O projeto se baseia em tecnicas de DevOps para realizar, de forma, automatizada, os testes e deploy do site html.</p>
-<p>O primeiro pipeline a ser executado é o chamado teste de integração, que é ativado automaticamente sempre que houver um push na branch dev. Neste projeto, utilizamos o SonarQube para realizar uma análise estática do código, verificando possíveis vulnerabilidades de segurança, quebra de padrões de codificação e trechos duplicados.</p>
-<p>O segundo pipeline a ser executado é o de deploy. Imaginemos um cenário em que todas as branches de feature já foram integradas à branch dev. No momento em que é aberto um pull request da branch dev para a main, o pipeline de deploy é acionado. Nessa etapa, uma imagem Docker é gerada com todas as dependências necessárias para o funcionamento do site. Em seguida, essa imagem é enviada e executada na infraestrutura da Azure. Após o deploy, entram em ação os testes end-to-end, que são responsáveis por validar funcionalidades específicas da aplicação, utilizando o Cypress como ferramenta de teste automatizado.</p>
+<p>O projeto se baseia em tecnicas de DevOps para realizar, de forma, automatizada, os testes e deploy de um site. Para isso, utilizamos das seguintes tecnologias:</p>
+<p>- Host com o Azure Web Apps</p><p>- Integração em Sonarqube (CI)</p><p>- Teste de deploy com Docker</p><p>- Testes e2e com Cypress</p>
 
-<h2 id="while">Objetivo do site</h2> 
-<p>O site desenvolvido neste projeto é um esforço do Grupo 8 para demonstrar a importância da conscientização sobre a preservação do meio ambiente. O conteúdo apresentado foi construído com base em dados coletados por meio de uma pesquisa realizada pelos integrantes do grupo no dia 6 de abril de 2025 no parque da cidade, Jundiaí. As perguntas da pesquisa foram elaboradas com foco no ODS 15 (Objetivo de Desenvolvimento Sustentável), que trata da proteção da vida terrestre e do desenvolvimento sustentável. As respostas obtidas foram organizadas em formato tabular e cálculos relacionados à emissão de CO₂, com o objetivo de evidenciar o impacto ambiental de determinadas práticas cotidianas.
+<h2 id="while">Objetivo do site</h2>
+<p>Este projeto é um esforço em demonstrar a importância da conscientização sobre a preservação do meio ambiente, e o impacto de alguns hábitos diários nas emissões de CO². O conteúdo apresentado foi construído com base em dados coletados por meio de uma pesquisa, realizada pelo grupo no dia 26 de abril de 2025 no parque da cidade de Jundiaí. As perguntas da pesquisa foram elaboradas com foco no ODS 15 (Objetivo de Desenvolvimento Sustentável) da ONU, que trata da proteção da vida terrestre e do desenvolvimento sustentável. As respostas obtidas foram organizadas em formato tabular e gráficos relacionados à emissão de CO₂.
  </p>
 
-
 <h2 id="for">Link do site</h2>
-<p>This code requests five inputs from the user to compute their respective factorials. The variable used to store the value is assigned to one every time the loop begins. I chose one because this number is the neutral element of multiplication.</p> 
+<p>Acesse o site aqui: <a href="https://pesquisa-emissao-co2.azurewebsites.net/index.html">Emissão de CO²</a> </p>
 
+<h2>Pipeline</h2>
+<h3>Integração</h3>
+<p>Toda modificação enviada para a branch 'dev' ativa o gatilho para o arquivo de integração, que roda o Sonarqube no nosso Azure através das aplicações do GitHub Actions.
+</p>
 
-
-
+<h3>Entrega</h3>
+<p>O workflow de entrega é ativado quando um 'pull request' é feito para a branch main. Há dois jobs nesta etapa do processo: 'deploy' e 'integration-test'.
+<ul>
+    <li>O 'deploy' realiza o login no Docker de acordo com as chaves fornecidas, para que possa realizar o build e push do projeto. Ele também realiza o deploy do site, utilizando o web app do Azure.</li>
+    <li>O 'integration-test' roda numa máquina virtual Ubuntu, instala os pacotes necessários e realiza os testes do Cypress.</li>
+Se Todos os passos do workflow ocorrrem sem erros, o merge das novas modificações é feito com a main branch e automaticamente atualiza o site.
+</ul>
+</p>
