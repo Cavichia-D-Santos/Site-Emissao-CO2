@@ -1,19 +1,4 @@
-describe('Página principal', () => {
-    beforeEach(() => {
-        cy.visit('https://pesquisa-emissao-co2.azurewebsites.net/index.html');
-    });
-
-    it('Deve clicar em dados e se redirecionar à página dados e então clicar em sobre (pagina Dados)', () => {
-        cy.contains('Dados').click();
-        cy.contains('Sobre').click();
-    });
-
-    it('Deve clicar em sobre e se direcionar à página sobre', () => {
-        cy.contains('Sobre').click();
-    });
-});
-
-describe("Página dados", () => {
+describe("Filtros na tabela", () => {
     beforeEach (() => {
         cy.visit('https://pesquisa-emissao-co2.azurewebsites.net/data.html');
     });
