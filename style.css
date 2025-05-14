@@ -1,0 +1,83 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f5f8f4;
+  color: #333;
+}
+
+header {
+  color: white;
+  text-shadow: 1px 1px 2px #000;
+  padding: 80px 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  background-blend-mode: darken;
+}
+
+.header-home {
+  background-image: url('imagem-semente.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.header-dados {
+  background-image: url('imagem-dados.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.header-contato {
+  background-image: url('imagem-contato.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+header h1 {
+  font-size: 2.8rem;
+  font-weight: bold;
+}
+
+header p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+section h2 {
+  color: #2d6a4f;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+section h3 {
+  color: #2d6a4f;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.bg-success h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.bg-success p {
+  font-size: 1.1rem;
+}
+
+.navbar {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  font-size: 0.9rem;
+  background-color: #1b4332;
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  header p {
+    font-size: 1rem;
+  }
+}
