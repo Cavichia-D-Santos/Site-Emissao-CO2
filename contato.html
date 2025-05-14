@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,14 +8,13 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
   </script>
   <script type="text/javascript">
-    (function(){
-        emailjs.init({
-          publicKey: "OCVyl4_xEhlmoRUh4",
-        });
+    (function () {
+      emailjs.init({
+        publicKey: "OCVyl4_xEhlmoRUh4",
+      });
     })();
   </script>
 </head>
@@ -67,7 +67,8 @@
               </div>
               <div class="mb-3">
                 <label for="mensagem" class="form-label">Mensagem</label>
-                <textarea class="form-control" id="mensagem" rows="5" placeholder="Digite sua mensagem aqui..." required></textarea>
+                <textarea class="form-control" id="mensagem" rows="5" placeholder="Digite sua mensagem aqui..."
+                  required></textarea>
               </div>
               <button type="submit" class="btn btn-success"><i class="bi bi-send-fill me-1"></i>Enviar</button>
             </form>
@@ -83,13 +84,12 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
+
   <script>
 
-    document.getElementById("contact-form").addEventListener("submit", function(event) {
-      event.preventDefault(); // Previne o envio padrão do formulário
+    document.getElementById("contact-form").addEventListener("submit", function (event) {
+      event.preventDefault(); 
 
-      // Validação do formulário
       const nome = document.getElementById("nome").value;
       const email = document.getElementById("email").value;
       const mensagem = document.getElementById("mensagem").value;
@@ -99,21 +99,20 @@
         return;
       }
 
-      // Dados a serem enviados para o EmailJS
       const templateParams = {
         from_name: nome,
         from_email: email,
         message: mensagem
       };
 
-      // Envio do email
       emailjs.send("service_ivwpxkj", "template_3pjg9e4", templateParams)
-        .then(function(response) {
+        .then(function (response) {
           document.getElementById("status-message").innerHTML = '<div class="alert alert-success">Mensagem enviada com sucesso!</div>';
-        }, function(error) {
+        }, function (error) {
           document.getElementById("status-message").innerHTML = '<div class="alert alert-danger">Ocorreu um erro ao enviar a mensagem. Tente novamente mais tarde.</div>';
         });
     });
   </script>
 </body>
+
 </html>
