@@ -56,6 +56,4 @@ jobs:
               run: npm install
 
             - name: Run Cypress E2E Test
-              run: |
-                cd integration-test
-                npx cypress run
+              run: npx cypress run
