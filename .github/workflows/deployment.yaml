@@ -32,7 +32,7 @@ jobs:
             - name: Azure Deploy
               uses: Azure/webapps-deploy@v3.0.1
               with: 
-                app-name: pesquisa-emissao-co2
+                app-name: deploy-site-co2
                 publish-profile: ${{ secrets.PUBLISH_PROFILE }}
                 image: 2404053/deploy-site-co2:latest
     
