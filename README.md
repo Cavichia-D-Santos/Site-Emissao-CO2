@@ -1,5 +1,5 @@
 <p width="100%" align="center">
-    <img src="Devops.png" width="200px">
+    <img src="images/imagem-devops.png" width="200px">
 </p>
 
 <h1 id = "projectDescription" align="center">Pipeline CI/CD</h1>
