@@ -1,6 +1,6 @@
 describe('Index', () => {
     beforeEach(() => {
-        cy.visit('https://pesquisa-emissao-co2.azurewebsites.net');
+        cy.visit('index.html');
     });
 
     it('Deve clicar e se direcionar à página', () => {
