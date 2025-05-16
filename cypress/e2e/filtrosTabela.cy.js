@@ -21,3 +21,4 @@ describe("Filtros na tabela", () => {
         cy.get('table').contains('td', 'Moto');
     });
 })
+//teste
