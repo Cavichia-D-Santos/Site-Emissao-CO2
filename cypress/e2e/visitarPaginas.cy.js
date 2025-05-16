@@ -5,13 +5,11 @@ describe('Visitar páginas', () => {
     });
 
     it('Navegar até a página de dados', () => {
-        cy.visit('https://pesquisa-emissao-co2.azurewebsites.net/index.html');
         cy.get('nav a').contains('Dados').click();
         cy.url().should('include', 'data.html');
     });
 
     it('Navegar até a página de contato', () => {
-        cy.visit('https://pesquisa-emissao-co2.azurewebsites.net/index.html');
         cy.get('nav a').contains('Contato').click();
         cy.url().should('include', 'contato.html');
     });
