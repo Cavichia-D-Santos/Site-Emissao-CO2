@@ -4,7 +4,7 @@
 
 <h1 id = "projectDescription" align="center">Pipeline CI/CD</h1>
 
-<p>Este projeto tem como objetivo demonstrar a implementação de uma pipeline de Integração Contínua (CI) e Entrega Contínua (CD) utilizando práticas de DevOps. </p>
+<p>Este projeto tem como objetivo demonstrar a implementação de uma pipeline de Integração Contínua (CI) e Entrega Contínua (CD) utilizando práticas de DevOps.</p>
 
 
 ## Sumário
