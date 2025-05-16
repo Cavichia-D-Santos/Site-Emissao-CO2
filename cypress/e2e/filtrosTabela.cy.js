@@ -9,7 +9,7 @@ describe("Filtros na tabela", () => {
         cy.get('table').contains('td', 'Carro');
     });
 
-        it('Deve filtrar modo de locomoção por transporte Público', () => {
+    it('Deve filtrar modo de locomoção por transporte Público', () => {
         cy.get('input[type=search]').type('Transporte Público');
         cy.get('table tbody tr');
         cy.get('table').contains('td', 'Transporte Público');
