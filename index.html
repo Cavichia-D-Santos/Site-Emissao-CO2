@@ -49,12 +49,12 @@
           </ul>
 
           <div class="d-flex align-items-center gap-2">
-            <button class="btn btn-outline-light btn-sm" id="loginBtn">
+            <button class="btn btn-outline-light btn-sm" id="loginBtn" onclick="btnLogin()">
               <i class="bi bi-box-arrow-in-right me-1"></i>Login
             </button>
             <button
               class="btn btn-light btn-sm text-success fw-semibold"
-              id="signupBtn"
+              id="signupBtn" onclick="btnSignup()"
             >
               <i class="bi bi-person-plus me-1"></i>Cadastre-se
             </button>
@@ -201,6 +201,44 @@
           Substituir o carro por transporte público duas vezes por semana pode
           reduzir sua emissão anual de carbono em até 20%.
         </p>
+      </div>
+    </section>
+
+    <!-- SEÇÃO DE COMENTÁRIOS -->
+    <section class="container my-5" id="comentarios">
+      <div class="card shadow-sm border-success">
+        <div class="card-body">
+          <h3 class="text-success mb-4">
+            <i class="bi bi-chat-dots me-2"></i>Comentários
+          </h3>
+
+          <form id="commentForm" class="mb-4">
+            <div class="mb-3" id="userInfo"></div>
+
+            <div class="mb-3">
+              <label for="textoComentario" class="form-label fw-semibold"
+                >Comentário</label
+              >
+              <textarea
+                id="textoComentario"
+                class="form-control"
+                rows="3"
+                placeholder="Escreva seu comentário..."
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+              <i class="bi bi-send me-1"></i>Enviar
+            </button>
+          </form>
+
+          <hr />
+
+          <div id="comentariosList">
+            <p class="text-muted">Nenhum comentário ainda. Seja o primeiro!</p>
+          </div>
+        </div>
       </div>
     </section>
 
