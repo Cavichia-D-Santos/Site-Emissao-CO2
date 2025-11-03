@@ -33,18 +33,20 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html"
-                >Página Inicial</a
-              >
+              <a class="nav-link active" href="index.html">Página Inicial</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="data.html">Dados</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="form-button">
               <a class="nav-link" href="form.html">Formulário</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="contato.html">Contato</a>
+            </li>
+            <!-- Botão de sair -->
+            <li class="nav-item" id="logoutItem">
+              <a class="nav-link text-danger" href="#" id="logoutBtn">Sair</a>
             </li>
           </ul>
 
@@ -54,7 +56,7 @@
             </button>
             <button
               class="btn btn-light btn-sm text-success fw-semibold"
-              id="signupBtn" 
+              id="signupBtn"
             >
               <i class="bi bi-person-plus me-1"></i>Cadastre-se
             </button>
@@ -253,45 +255,48 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="./scripts/auth.js"></script> <!-- Importa o arquivo com as funções login() e register() -->
+    <script src="./scripts/auth.js"></script>
+    <!-- Importa o arquivo com as funções login() e register() -->
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const loginBtn = document.getElementById("loginBtn");
-    const signupBtn = document.getElementById("signupBtn");
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const loginBtn = document.getElementById("loginBtn");
+        const signupBtn = document.getElementById("signupBtn");
 
-    // Cria tooltip customizada
-    const createTooltip = (btn, content) => {
-      document.querySelectorAll(".custom-tooltip").forEach((t) => t.remove());
+        // Cria tooltip customizada
+        const createTooltip = (btn, content) => {
+          document
+            .querySelectorAll(".custom-tooltip")
+            .forEach((t) => t.remove());
 
-      const tooltip = document.createElement("div");
-      tooltip.className = "custom-tooltip card shadow p-3";
-      tooltip.innerHTML = content;
-      document.body.appendChild(tooltip);
+          const tooltip = document.createElement("div");
+          tooltip.className = "custom-tooltip card shadow p-3";
+          tooltip.innerHTML = content;
+          document.body.appendChild(tooltip);
 
-      const rect = btn.getBoundingClientRect();
-      tooltip.style.position = "absolute";
-      tooltip.style.top = rect.bottom + window.scrollY + 8 + "px";
-      tooltip.style.left = rect.left + "px";
-      tooltip.style.zIndex = 9999;
+          const rect = btn.getBoundingClientRect();
+          tooltip.style.position = "absolute";
+          tooltip.style.top = rect.bottom + window.scrollY + 8 + "px";
+          tooltip.style.left = rect.left + "px";
+          tooltip.style.zIndex = 9999;
 
-      // Fecha se clicar fora
-      const closeTooltip = (e) => {
-        if (!tooltip.contains(e.target) && e.target !== btn) {
-          tooltip.remove();
-          document.removeEventListener("click", closeTooltip);
-        }
-      };
-      document.addEventListener("click", closeTooltip);
-    };
+          // Fecha se clicar fora
+          const closeTooltip = (e) => {
+            if (!tooltip.contains(e.target) && e.target !== btn) {
+              tooltip.remove();
+              document.removeEventListener("click", closeTooltip);
+            }
+          };
+          document.addEventListener("click", closeTooltip);
+        };
 
-    // 🔹 LOGIN
-    loginBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
+        // 🔹 LOGIN
+        loginBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
 
-      createTooltip(
-        loginBtn,
-        `
+          createTooltip(
+            loginBtn,
+            `
         <h6 class="text-success mb-2"><i class="bi bi-box-arrow-in-right me-1"></i>Login</h6>
         <form id="loginForm">
           <input id="email" type="email" class="form-control mb-2" placeholder="E-mail" required />
@@ -300,29 +305,37 @@
         </form>
         <div id="loginMsg" class="mt-2 small text-danger"></div>
       `
-      );
+          );
 
-      // Escuta o submit do login
-      document.getElementById("loginForm").addEventListener("submit", async (ev) => {
-        ev.preventDefault();
-        try {
-          await login(); // chama a função definida no auth.js
-          document.getElementById("loginMsg").textContent = "Login bem-sucedido!";
-          document.getElementById("loginMsg").className = "text-success small";
-          setTimeout(() => document.querySelector(".custom-tooltip")?.remove(), 1000);
-        } catch (err) {
-          document.getElementById("loginMsg").textContent = "Erro ao fazer login!";
-        }
-      });
-    });
+          // Escuta o submit do login
+          document
+            .getElementById("loginForm")
+            .addEventListener("submit", async (ev) => {
+              ev.preventDefault();
+              try {
+                await login(); // chama a função definida no auth.js
+                document.getElementById("loginMsg").textContent =
+                  "Login bem-sucedido!";
+                document.getElementById("loginMsg").className =
+                  "text-success small";
+                setTimeout(
+                  () => document.querySelector(".custom-tooltip")?.remove(),
+                  1000
+                );
+              } catch (err) {
+                document.getElementById("loginMsg").textContent =
+                  "Erro ao fazer login!";
+              }
+            });
+        });
 
-    // 🔹 CADASTRO
-    signupBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
+        // 🔹 CADASTRO
+        signupBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
 
-      createTooltip(
-        signupBtn,
-        `
+          createTooltip(
+            signupBtn,
+            `
         <h6 class="text-success mb-2"><i class="bi bi-person-plus me-1"></i>Cadastre-se</h6>
         <form id="signupForm">
           <input id="signupNome" type="text" class="form-control mb-2" placeholder="Nome" required />
@@ -332,23 +345,59 @@
         </form>
         <div id="signupMsg" class="mt-2 small text-danger"></div>
       `
-      );
+          );
 
-      // Escuta o submit do cadastro
-      document.getElementById("signupForm").addEventListener("submit", async (ev) => {
-        ev.preventDefault();
-        try {
-          await register(); // chama a função do auth.js
-          document.getElementById("signupMsg").textContent = "Cadastrado com sucesso!";
-          document.getElementById("signupMsg").className = "text-success small";
-          setTimeout(() => document.querySelector(".custom-tooltip")?.remove(), 1000);
-        } catch (err) {
-          document.getElementById("signupMsg").textContent = "Erro ao cadastrar!";
-        }
+          // Escuta o submit do cadastro
+          document
+            .getElementById("signupForm")
+            .addEventListener("submit", async (ev) => {
+              ev.preventDefault();
+              const sucesso = await register();
+
+              const msg = document.getElementById("signupMsg");
+              if (sucesso) {
+                msg.textContent = "Cadastrado com sucesso!";
+                msg.className = "text-success small";
+                setTimeout(
+                  () => document.querySelector(".custom-tooltip")?.remove(),
+                  1000
+                );
+              } else {
+                msg.textContent = "Erro ao cadastrar!";
+                msg.className = "text-danger small";
+              }
+            });
+        });
       });
-    });
-  });
-</script>
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const logoutItem = document.getElementById("logoutItem");
+        const logoutBtn = document.getElementById("logoutBtn");
+        const token = localStorage.getItem("token-api");
+        const loginBtn = document.getElementById("loginBtn");
+        const signupBtn = document.getElementById("signupBtn");
+        const formBtn = document.getElementById("form-button");
+
+        // Exibe o botão "Sair" só se o usuário estiver logado
+        if (token) {
+          logoutItem.style.display = "block";
+          formBtn.style.display = "block";
+          loginBtn.style.display = "none";
+          signupBtn.style.display = "none";
+        } else {
+          logoutItem.style.display = "none";
+          formBtn.style.display = "none";
+        }
+
+        // Evento de logout
+        logoutBtn.addEventListener("click", (ev) => {
+          ev.preventDefault();
+          localStorage.removeItem("token-api");
+          alert("Você saiu da conta.");
+          window.location.href = "index.html"; // redireciona pra home
+        });
+      });
+    </script>
 
     <style>
       .custom-tooltip {

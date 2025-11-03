@@ -1,59 +1,64 @@
 //const dominio = 'emissaoco2-backend.azurewebsites.net'
-const dominio = 'http://localhost:3001'
+const dominio = "http://localhost:3001";
 
 // Login
 async function login() {
- const credenciais = {
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value
+  const credenciais = {
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value,
+  };
+
+  try {
+    const response = await fetch(`${dominio}/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(credenciais),
+    });
+
+    if (!response.ok) {
+      const erro = await response.text();
+      console.error("Erro no login:", erro);
+      alert("E-mail ou senha incorretos!");
+      return;
     }
 
-    try {
-        const response = await fetch(`${dominio}/auth/login`, {
-            method: 'POST',
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify(credenciais)
-        })
+    const tokenResponse = await response.json();
+    const token = tokenResponse.token;
 
-        const tokenResponse = await response.json();
-        const token = tokenResponse.token;
-
-        localStorage.setItem('token-api', token)
-        console.log("Login bem sucedido")
-    } catch (error) {
-        console.log("Erro: ", error)
-    }
+    localStorage.setItem("token-api", token);
+    console.log("Login bem-sucedido");
+    window.location.reload();
+  } catch (error) {
+    console.log("Erro: ", error);
+    alert("Falha ao conectar com o servidor.");
+  }
 }
 
 // Cadastro de Usuário - CONFERIR CODIGO
 async function register() {
   const novoUsuario = {
+    nome: document.getElementById("signupNome").value,
     email: document.getElementById("signupEmail").value,
     password: document.getElementById("signupPassword").value,
-    nome: document.getElementById("signupNome").value
-  }
+  };
 
   try {
     const response = await fetch(`${dominio}/auth/register`, {
-      method: 'POST',
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(novoUsuario)
-    })
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(novoUsuario),
+    });
 
     if (!response.ok) {
-      document.getElementById("signupMsg").textContent = "Erro ao cadastrar!"
-      return
+      const erroTexto = await response.text();
+      console.error("Erro no registro:", erroTexto);
+      return false;
     }
 
-    document.getElementById("signupMsg").className = "text-success"
-    document.getElementById("signupMsg").textContent = "Cadastrado com sucesso!"
-
-    setTimeout(() => {
-      const modal = bootstrap.Modal.getInstance(document.getElementById("signupModal"))
-      modal.hide()
-    }, 1000)
-
+    console.log("Cadastro bem-sucedido!");
+    return true;
   } catch (error) {
-    console.log(error)
+    console.error("Erro de conexão no register:", error);
+    return false;
   }
 }
