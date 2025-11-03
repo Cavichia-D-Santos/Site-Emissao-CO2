@@ -1,4 +1,5 @@
-const dominio = 'emissaoco2-backend.azurewebsites.net '
+//const dominio = 'emissaoco2-backend.azurewebsites.net'
+const dominio = 'http://localhost:3001'
 
 // Login
 async function login() {
@@ -18,6 +19,7 @@ async function login() {
         const token = tokenResponse.token;
 
         localStorage.setItem('token-api', token)
+        console.log("Login bem sucedido")
     } catch (error) {
         console.log("Erro: ", error)
     }

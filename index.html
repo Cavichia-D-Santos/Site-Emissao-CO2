@@ -49,12 +49,12 @@
           </ul>
 
           <div class="d-flex align-items-center gap-2">
-            <button class="btn btn-outline-light btn-sm" id="loginBtn" onclick="btnLogin()">
+            <button class="btn btn-outline-light btn-sm" id="loginBtn">
               <i class="bi bi-box-arrow-in-right me-1"></i>Login
             </button>
             <button
               class="btn btn-light btn-sm text-success fw-semibold"
-              id="signupBtn" onclick="btnSignup()"
+              id="signupBtn" 
             >
               <i class="bi bi-person-plus me-1"></i>Cadastre-se
             </button>
@@ -253,72 +253,102 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const loginBtn = document.getElementById("loginBtn");
-        const signupBtn = document.getElementById("signupBtn");
+    <script src="./scripts/auth.js"></script> <!-- Importa o arquivo com as funções login() e register() -->
 
-        // Cria os tooltips manualmente
-        const createTooltip = (btn, content) => {
-          const tooltip = document.createElement("div");
-          tooltip.className = "custom-tooltip card shadow p-3";
-          tooltip.innerHTML = content;
-          document.body.appendChild(tooltip);
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const loginBtn = document.getElementById("loginBtn");
+    const signupBtn = document.getElementById("signupBtn");
 
-          const rect = btn.getBoundingClientRect();
-          tooltip.style.position = "absolute";
-          tooltip.style.top = rect.bottom + window.scrollY + 8 + "px";
-          tooltip.style.left = rect.left + "px";
-          tooltip.style.zIndex = 9999;
+    // Cria tooltip customizada
+    const createTooltip = (btn, content) => {
+      document.querySelectorAll(".custom-tooltip").forEach((t) => t.remove());
 
-          // Fecha se clicar fora
-          const closeTooltip = (e) => {
-            if (!tooltip.contains(e.target) && e.target !== btn) {
-              tooltip.remove();
-              document.removeEventListener("click", closeTooltip);
-            }
-          };
-          document.addEventListener("click", closeTooltip);
-        };
+      const tooltip = document.createElement("div");
+      tooltip.className = "custom-tooltip card shadow p-3";
+      tooltip.innerHTML = content;
+      document.body.appendChild(tooltip);
 
-        loginBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          document
-            .querySelectorAll(".custom-tooltip")
-            .forEach((t) => t.remove());
-          createTooltip(
-            loginBtn,
-            `
+      const rect = btn.getBoundingClientRect();
+      tooltip.style.position = "absolute";
+      tooltip.style.top = rect.bottom + window.scrollY + 8 + "px";
+      tooltip.style.left = rect.left + "px";
+      tooltip.style.zIndex = 9999;
+
+      // Fecha se clicar fora
+      const closeTooltip = (e) => {
+        if (!tooltip.contains(e.target) && e.target !== btn) {
+          tooltip.remove();
+          document.removeEventListener("click", closeTooltip);
+        }
+      };
+      document.addEventListener("click", closeTooltip);
+    };
+
+    // 🔹 LOGIN
+    loginBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      createTooltip(
+        loginBtn,
+        `
         <h6 class="text-success mb-2"><i class="bi bi-box-arrow-in-right me-1"></i>Login</h6>
         <form id="loginForm">
-          <input type="email" class="form-control mb-2" placeholder="E-mail" required />
-          <input type="password" class="form-control mb-3" placeholder="Senha" required />
+          <input id="email" type="email" class="form-control mb-2" placeholder="E-mail" required />
+          <input id="password" type="password" class="form-control mb-3" placeholder="Senha" required />
           <button class="btn btn-success btn-sm w-100" type="submit">Entrar</button>
         </form>
+        <div id="loginMsg" class="mt-2 small text-danger"></div>
       `
-          );
-        });
+      );
 
-        signupBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          document
-            .querySelectorAll(".custom-tooltip")
-            .forEach((t) => t.remove());
-          createTooltip(
-            signupBtn,
-            `
+      // Escuta o submit do login
+      document.getElementById("loginForm").addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+        try {
+          await login(); // chama a função definida no auth.js
+          document.getElementById("loginMsg").textContent = "Login bem-sucedido!";
+          document.getElementById("loginMsg").className = "text-success small";
+          setTimeout(() => document.querySelector(".custom-tooltip")?.remove(), 1000);
+        } catch (err) {
+          document.getElementById("loginMsg").textContent = "Erro ao fazer login!";
+        }
+      });
+    });
+
+    // 🔹 CADASTRO
+    signupBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      createTooltip(
+        signupBtn,
+        `
         <h6 class="text-success mb-2"><i class="bi bi-person-plus me-1"></i>Cadastre-se</h6>
         <form id="signupForm">
-          <input type="text" class="form-control mb-2" placeholder="Nome" required />
-          <input type="email" class="form-control mb-2" placeholder="E-mail" required />
-          <input type="password" class="form-control mb-3" placeholder="Senha" required />
+          <input id="signupNome" type="text" class="form-control mb-2" placeholder="Nome" required />
+          <input id="signupEmail" type="email" class="form-control mb-2" placeholder="E-mail" required />
+          <input id="signupPassword" type="password" class="form-control mb-3" placeholder="Senha" required />
           <button class="btn btn-success btn-sm w-100" type="submit">Cadastrar</button>
         </form>
+        <div id="signupMsg" class="mt-2 small text-danger"></div>
       `
-          );
-        });
+      );
+
+      // Escuta o submit do cadastro
+      document.getElementById("signupForm").addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+        try {
+          await register(); // chama a função do auth.js
+          document.getElementById("signupMsg").textContent = "Cadastrado com sucesso!";
+          document.getElementById("signupMsg").className = "text-success small";
+          setTimeout(() => document.querySelector(".custom-tooltip")?.remove(), 1000);
+        } catch (err) {
+          document.getElementById("signupMsg").textContent = "Erro ao cadastrar!";
+        }
       });
-    </script>
+    });
+  });
+</script>
 
     <style>
       .custom-tooltip {
@@ -341,4 +371,3 @@
     </style>
   </body>
 </html>
-<!--teste-->
