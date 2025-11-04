@@ -1,6 +1,3 @@
-const dominio = "emissaoco2-backend.azurewebsites.net";
-//const dominio = "http://localhost:3001";
-
 // Login
 async function login() {
   const credenciais = {
