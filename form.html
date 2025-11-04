@@ -222,6 +222,33 @@
           );
         });
       });
+            document.addEventListener("DOMContentLoaded", () => {
+        const logoutItem = document.getElementById("logoutItem");
+        const logoutBtn = document.getElementById("logoutBtn");
+        const token = localStorage.getItem("token-api");
+        const loginBtn = document.getElementById("loginBtn");
+        const signupBtn = document.getElementById("signupBtn");
+        const formBtn = document.getElementById("form-button");
+
+        // Exibe o botão "Sair" só se o usuário estiver logado
+        if (token) {
+          logoutItem.style.display = "block";
+          formBtn.style.display = "block";
+          loginBtn.style.display = "none";
+          signupBtn.style.display = "none";
+        } else {
+          logoutItem.style.display = "none";
+          formBtn.style.display = "none";
+        }
+
+        // Evento de logout
+        logoutBtn.addEventListener("click", (ev) => {
+          ev.preventDefault();
+          localStorage.removeItem("token-api");
+          alert("Você saiu da conta.");
+          window.location.href = "index.html"; // redireciona pra home
+        });
+      });
     </script>
 
     <style>

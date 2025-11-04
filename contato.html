@@ -50,7 +50,9 @@
               <a class="nav-link" href="data.html">Dados</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="form.html">Formulário</a>
+              <a class="nav-link" href="form.html" id="form-button"
+                >Formulário</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="contato.html"
@@ -234,6 +236,17 @@
       `
           );
         });
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("token-api");
+        const formBtn = document.getElementById("form-button");
+
+        if (token) {
+          formBtn.style.display = "block";
+        } else {
+          formBtn.style.display = "none";
+        }
       });
     </script>
 
