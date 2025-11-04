@@ -1,5 +1,4 @@
-const dominio = "emissaoco2-backend.azurewebsites.net";
-//const dominio = "http://localhost:3001";
+const dominio = "https://emissaoco2-backend.azurewebsites.net";
 
 async function getComments() {
   try {

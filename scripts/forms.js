@@ -1,9 +1,8 @@
-const dominio = 'https://emissaoco2-backend.azurewebsites.net'
-//const dominio = 'http://localhost:3001'
+const dominio = "https://emissaoco2-backend.azurewebsites.net";
 
-async function createForm(){
+async function createForm() {
   const token = localStorage.getItem("token-api");
-  if (!token){
+  if (!token) {
     alert("Realize o login para enviar um formulário.");
     return;
   }
@@ -14,31 +13,38 @@ async function createForm(){
     quilometragem: document.getElementById("km").value,
     transportePublico: document.getElementById("transportePublico").value,
     carne: document.getElementById("carne").value,
-    co2: 0 //será calculado futuramente
+    co2: 0, //será calculado futuramente
   };
 
   try {
     const response = await fetch(`${dominio}/form`, {
       method: "POST",
-      headers: { "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
-    },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify(novoForm),
     });
 
     if (!response.ok) {
       const erroTexto = await response.text();
       console.error("Erro no envio:", erroTexto);
-      document.getElementById("formMsg").textContent = "Erro ao enviar o formulário.";
-      document.getElementById("formMsg").className = "text-danger fw-semibold text-center";
+      document.getElementById("formMsg").textContent =
+        "Erro ao enviar o formulário.";
+      document.getElementById("formMsg").className =
+        "text-danger fw-semibold text-center";
       return false;
     }
 
     console.log("Formulário enviado com sucesso!");
     document.querySelector("form").reset();
-    document.getElementById("formMsg").textContent = "Resposta enviada com sucesso!";
-    document.getElementById("formMsg").className = "text-success fw-semibold text-center";
-    setTimeout(() => { document.getElementById("formMsg").textContent = ""; }, 3000);
+    document.getElementById("formMsg").textContent =
+      "Resposta enviada com sucesso!";
+    document.getElementById("formMsg").className =
+      "text-success fw-semibold text-center";
+    setTimeout(() => {
+      document.getElementById("formMsg").textContent = "";
+    }, 3000);
     return true;
   } catch (error) {
     console.error("Erro no envio:", error);
@@ -48,12 +54,12 @@ async function createForm(){
 
 function calcularCo2(km, carne) {
   let total = 0;
-  if (km && !isNaN(km)){
+  if (km && !isNaN(km)) {
     total += km * 7 * 0.12;
-  } 
-  if (carne && !isNaN(carne)){
+  }
+  if (carne && !isNaN(carne)) {
     total += carne * 6;
-  } 
+  }
   return total > 0 ? total.toFixed(2) : "Dados insuficientes";
 }
 
@@ -67,7 +73,7 @@ async function carregarDados() {
 
     tbody.innerHTML = "";
 
-    dados.forEach(item => {
+    dados.forEach((item) => {
       const emissao = calcularCo2(item.quilometragem, item.carne);
 
       tbody.innerHTML += `
@@ -97,11 +103,10 @@ async function carregarDados() {
           first: "Primeiro",
           last: "Último",
           next: "Próximo",
-          previous: "Anterior"
-        }
-      }
+          previous: "Anterior",
+        },
+      },
     });
-
   } catch (error) {
     console.error("Erro ao carregar dados:", error);
   }
@@ -110,10 +115,12 @@ async function carregarDados() {
 /** ✅ Executa apenas onde for necessário */
 document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("btnEnviarForm")) {
-    document.getElementById("btnEnviarForm").addEventListener("click", async (event) => {
-      event.preventDefault();
-      await createForm();
-    });
+    document
+      .getElementById("btnEnviarForm")
+      .addEventListener("click", async (event) => {
+        event.preventDefault();
+        await createForm();
+      });
   }
 
   if (document.getElementById("TabelaRespostas")) {
