@@ -34,7 +34,7 @@ async function login() {
   }
 }
 
-// Cadastro de Usuário - CONFERIR CODIGO
+// Cadastro de Usuário
 async function register() {
   const novoUsuario = {
     nome: document.getElementById("signupNome").value,
