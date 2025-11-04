@@ -1,4 +1,4 @@
-const dominio = 'emissaoco2-backend.azurewebsites.net'
+const dominio = 'https://emissaoco2-backend.azurewebsites.net'
 //const dominio = 'http://localhost:3001'
 
 async function createForm(){
