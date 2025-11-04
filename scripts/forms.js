@@ -1,5 +1,3 @@
-const dominio = "https://emissaoco2-backend.azurewebsites.net";
-
 async function createForm() {
   const token = localStorage.getItem("token-api");
   if (!token) {
